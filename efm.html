@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+	<title>EFM 2015</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/style1.css">
+</head>
+<body>
+	<div id="principal">
+		<h1>Informations de payements</h1>
+		<div id="erreur">
+		</div>
+		<form name="form_payement" >
+			<div>
+				
+				  <p>	<label>Nom et prenom du client : </label><input type="text" name="nom"></p>
+				
+				
+					<p><label>Adresse:</label><input type="text" name="adresse" style="width:300px"></p>
+				
+					<p><label>Numéro de téléphone :(+212)</label><input type="text" name="tel"></p>
+				
+					<p><label>Type de payement:</label></p>
+				    <p>
+					<input type="radio" name="type_payement" checked="checked" onclick="pay()"><img src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c530.png" style="width: 60px;"/>
+					<input type="radio" name="type_payement" onclick="pay()">Par carte bancaire <img src="http://assets.stickpng.com/images/58482363cef1014c0b5e49c1.png" style="width: 60px;" />
+				</p>
+			
+			
+		    </div>
+			<div id="paypal">
+				
+				
+					<p><label>Entrez votre e-mail :</label><input type="text" name="email"></p>
+				
+			    	<p><label>Mot de passe :</label><input type="password" name="password"></p>
+			  
+			</div>
+			<div id="carte_bancaire" style="display: none;">
+				
+					<p><label>Selectionnez le type de carte:</label>
+					<select name="type_carte">
+						<option value="visa">Visa</option>
+						<option value="master_card">Master Card</option>
+						<option value="american_express">American Express</option>
+					</select>
+		    		<label>Numéro de carte :</label><input type="text" name="num_carte">
+		             </p>
+		             <p>
+						<label>Expiration fin :</label>
+						<input type="number" name="mois" min="1" max="12" value="1">
+						<input type="number" name="annee" value="2015" style="width:60px">
+						<label>Code verification :</label><input type="text" name="code_verif" style="width:60px" >
+					</p>
+            
+			</div>
+			<div>
+			<input type="button" value="Valider" onclick="valider()">
+			<input type="reset" value="Effacer">
+		 
+			</div>
+		</form>
+	
+	<div id ="info"></div>
+    </div>
+
+</body>
+</html>
