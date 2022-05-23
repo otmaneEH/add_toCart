@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>prouduit</title>
+  </head>
+
+  <body>
+    <form>
+      <fieldset>
+        <legend>
+          <mark
+            ><b><i>saisir les notes de l eleve</i></b></mark
+          >
+        </legend>
+        <table>
+          <tr>
+            <td>
+              <label for="matiere">matiere: </label>
+            </td>
+            <td>
+              <input type="text" id="matiere" />
+            </td>
+            <td>
+              <a id="oref" style="color: red"></a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="cofs">coffient : </label>
+            </td>
+            <td>
+              <input type="text" id="cofs" />
+            </td>
+            <td>
+              <a id="onom" style="color: red"></a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="prix">controle 1 </label>
+            </td>
+            <td>
+              <input type="text" id="control1" />
+            </td>
+            <td>
+              <!-- <a id="control1" style="color: red"></a> -->
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="prix">controle 2</label>
+            </td>
+            <td>
+              <input type="text" id="control2" />
+            </td>
+            <td>
+              <a id="controle2" style="color: red"></a>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                type="button"
+                value="Ajouter"
+                onclick="ajouter()"
+              />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input
+                type="button"
+                value="Supprimer"
+                onclick="supprimer()"
+              />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input
+                type="button"
+                value="terminier"
+                onclick="chercheretAfficher()"
+                onclick="rech()"
+              />
+            </td>
+          </tr>
+        </table>
+        <br />
+        <fieldset style="display: non">
+         
+          <table id="tableProduits" border="2">
+            <tr>
+              <th>matiere</th>
+              <th>coffient </th>
+              <th>cc1</th>
+              <th>cc2</th>
+              <th>moyenne matiere</th>
+              <th>Prix (DH)</th>
+            </tr>
+          </table>
+        </fieldset>
+      </fieldset>
+    </form>
+    <script>
+      var ref = document.getElementById("ref");
+      var nom = document.getElementById("nom");
+      var prix = document.getElementById("prix");
+      var prix = document.getElementById("prix");
+      var prix = document.getElementById("prix");
+      var prix = document.getElementById("prix");
+      var tab = [];
+      function ajouter() {
+        let newProduit = {
+          reference: ref.value,
+          nom: nom.value,
+          prix: prix.value,
+        };
+        if (checkobligatoire() == true) {
+          alert("tous les champs sans obligatoire!");
+        } else {
+          if (rechercher(newProduit.reference) == -1) {
+            tab.push(newProduit);
+            alert("produit " + newProduit.reference + " est bien ajouté!");
+          } else {
+            alert("veuillez changer la reference!");
+            ref.value = "";
+          }
+        }
+      }
+
+      function afficher() {
+        var tableProduits = document.getElementById("tableProduits");
+        tableProduits.innerHTML =
+          "<tr><th>reference</th><th>nom</th><th>prix</th></tr>";
+        for (let i = 0; i < tab.length; i++) {
+          tableProduits.innerHTML +=
+            "<tr><td>" +
+            tab[i].reference +
+            "</td><td>" +
+            tab[i].nom +
+            "</td><td>" +
+            tab[i].prix +
+            "</td></tr>";
+        }
+      }
+      function checkobligatoire() {
+        if (
+          ref.value.trim() == "" ||
+          nom.value.trim() == "" ||
+          prix.value.trim() == ""
+        ) {
+          return true;
+        } else return false;
+      }
+      function supprimer() {
+        var indice = rechercher(ref.value);
+        if (indice == -1) alert("le produit a supprimé n'existe pas!");
+        else {
+          tab.splice(indice, 1);
+          alert("le produit bien supprimé!");
+        }}
+    </script>
+  </body>
+</html>
