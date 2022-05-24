@@ -2,22 +2,107 @@
 <html>
 
 <head>
+    <style>
+        body {
+            background: url("images/arriere.jpg") no-repeat;
+            background-size: cover;
+        }
+
+        #principal h1 {
+            text-decoration: underline;
+            color: blue;
+            background: yellow;
+            border: 1px solid blue;
+        }
+
+        div {
+            margin: 10px 20px;
+
+
+        }
+
+        input:focus {
+            background: yellow;
+        }
+
+        /* Pour afficher le bloc des erreurs en couleur rouge */
+        #erreur {
+            color: red;
+        }
+    </style>
     <title>EFM 2015</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="/style1.css">
-    <script>
-        function valider() {
-            let nom = document.forms["form_payement"]["nom"].value;
-            let adresse = document.forms["form_payement"]["adresse"].value;
-            let type_payement = document.forms["form_payement"]["type_payement"].value;
-            let email = document.forms["form_payement"]["email"].value;
-            let password = document.forms["form_payement"]["password"].value;
-            if ((nom = "") || (adresse = "") || (type_payement = "") || (password = "")) {
-                alert("tous les champs doivent etre remplis")
-                return false
+    <script defer>
+        function verifier() {
+            var nom = document.form_payement.nom;
+            var adresse = document.form_payement.adresse;
+            var tel = document.form_payement.tel;
+            var payement = document.getElementsByName('type_payement');
+            var email = document.form_payement.email;
+            var password = document.form_payement.password;
+            var num_carte = document.form_payement.num_carte;
+            var mois = document.form_payement.mois;
+            var annee = document.form_payement.annee;
+            var code = document.form_payement.code_verif;
+            var erreur = document.getElementById('erreur');
+            var info = document.getElementById('info');
+            //Source : www.exelib.net
+            /*on vide les blocs d'affichage d'erreurs et d'e resultat*/
+            erreur.innerHTML = "";
+            info.innerHTML = "";
+            /*Tous les champs sont obligatoires l'email et password sont obligatoires si le payment est de type paypal et les champs numero de carte ,mois ,année et code sont obligatoires si le payment est de type "par carte"*/
+            if (nom.value == "" || adresse.value == "" || tel.value == "" || (payement[0].checked && (password.value == "" || email.value == "")) || (payement[1].checked && (num_carte.value == "" || mois.value == "" || annee.value == "" || code.value == ""))) {
+                /*Vous pouvez utiliser les boites de dialogues "alert" ou bien un bloc qui affiche les erreurs*/
+                //alert("Vous avez oublier de remplir un champs obligatoire");
+                //return false
+                erreur.innerHTML += "* Vous avez oublier de remplir un champs obligatoire<br>";
+
             }
+            if (!/^[0-9]{9}$/.test(tel.value)) {
+                //alert("Le numéro de téléphone doit contenir seulement 9 chiffres");
+                //return false
+                erreur.innerHTML += "* Le numéro de téléphone doit contenir seulement 9 chiffres<br>";
+
+            }
+            if (payement[0].checked && email.value.indexOf('@') == -1) {
+                //alert("l'adresse mail est incorrecte");
+                //return false
+                erreur.innerHTML += "* L'adresse mail est incorrecte<br>";
+
+            }
+            if (payement[1].checked && !/^[0-9]{16}$/.test(num_carte.value)) {
+                //alert("le champs numero de carte doit contenir  16 chiffres");
+                //return false
+                erreur.innerHTML += "* Le champs numero de carte doit contenir  16 chiffres<br>";
+
+            }
+            if (payement[1].checked && !/^[0-9]{3}$/.test(code.value)) {
+                //alert("le champs code doit contenir 3 chiffres");
+                //return false
+                erreur.innerHTML += "* Le champs code doit contenir 3 chiffres<br>";
+                return false;
+            }
+            if (erreur.innerHTML != "")
+                return false;
+
+            return true;
 
         }
+        function valider() {
+            if (verifier()) {
+
+
+                info.innerHTML = "<b>Nom et prenom du client:</b>" + nom.value + "<br>"
+                    + "<b>Numéro de téléphone </b>: (+212)" + tel.value + "<br>";
+                if (payement[0].checked)
+                    info.innerHTML += "<b>Type de payement</b> : Paypal";
+                else
+                    info.innerHTML += "<b>Type de payement</b> : Par carte bancaire";
+            }
+        }
+//Source : www.exelib.net
+//Source : www.exelib.net
     </script>
 </head>
 
@@ -26,7 +111,7 @@
         <h1>Informations de payements</h1>
         <div id="erreur">
         </div>
-        <form name="form_payement" action="https://www.google.com/" method="post" onsubmit="return valider()" >
+        <form name="form_payement">
             <div>
 
                 <p> <label>Nom et prenom du client : </label><input type="text" name="nom"></p>
@@ -73,7 +158,7 @@
 
             </div>
             <div>
-                <input type="submit" value="Valider">
+                <input type="button" value="Valider" onclick="valider()">
                 <input type="reset" value="Effacer">
 
             </div>
