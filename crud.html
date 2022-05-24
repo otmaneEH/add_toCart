@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Site</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="scripts/crud.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Playfair+Display&family=Playfair+Display+SC&family=Roboto+Condensed:wght@300;400&family=Roboto+Slab:wght@100;200;300;400&family=Roboto:ital,wght@0,700;1,900&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto Slab', serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-sm-12 mt-sm-5 col-lg-6 col-md-6">
+            <form action="" class="form" name="myform">
+                <div class="row">
+                    <label> email <input type="text" placeholder="entre email" id="email"
+                            class="form-control"></label>
+                </div>
+                <div class="row">
+                    <label> eur code
+                        <input type="text" placeholder="entre email" id="eurcode" class="form-control">
+                    </label>
+                </div>
+                <div class="row">
+                    <label>
+                        salary <input type="number" placeholder="entre email" id="salary" class="form-control">
+                    </label>
+                </div>
+                <div class="row">
+                    <label>
+                        city <input type="text" placeholder="entre email" id="city" class="form-control">
+                    </label>
+                </div>
+                <div class="row">
+                    <label>
+                        <input type="submit" class="btn btn-primary position-relative float-left mt-3">
+                    </label>
+                </div>
+                <div class="errour alert-danger"></div>
+            </form>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-6 col-sm-12 mt-5">
+            <table class="table table-info table-bordered">
+                <thead>
+                    <tr>
+                        <th>email</th>
+                        <th>eur code</th>
+                        <th>salary</th>
+                        <th>city</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+    
+
+</body>
+
+</html>
